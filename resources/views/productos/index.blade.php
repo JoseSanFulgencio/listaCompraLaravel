@@ -5,7 +5,6 @@
     <div class="row">
 
         @foreach( $arrayProductos as $key => $producto )
-
         <div class="col-xs-6 col-sm-4 col-md-3 text-center">
 
             <a href="{{ url('/productos/show/' . $producto->id ) }}">
@@ -15,9 +14,9 @@
                 </h4>
             </a>
 
-    </div>
-    @endforeach
+        </div>
+        @endforeach
 
-</div>
+    </div>
 
 @stop
