@@ -17,22 +17,25 @@ use App\Http\Controllers\ProductoController;
 
 Route::get('/', [HomeController::class, 'getHome']);
 
-Route::group(['prefix' => 'productos'], function () {
+Route::group(['prefix' => 'auth'], function() {
 
-    Route::get('/', [ProductoController::class, 'getIndex']);
+    Route::group(['prefix' => 'productos'], function () {
 
-    Route::get('/show/{id}', [ProductoController::class, 'getShow']);
+        Route::get('/', [ProductoController::class, 'getIndex']);
 
-    Route::get('/create', [ProductoController::class, 'getCreate']);
+        Route::get('/show/{id}', [ProductoController::class, 'getShow']);
 
-    Route::get('/edit/{id}', [ProductoController::class, 'getEdit']);
+        Route::get('/create', [ProductoController::class, 'getCreate']);
+        Route::post('/create', [ProductoController::class, 'postCreate']);
+
+        Route::get('/edit/{id}', [ProductoController::class, 'getEdit']);
+        Route::put('/edit/{id}', [ProductoController::class, 'putEdit']);
+
+    });
 
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
 
-Route::get('/logout', function () {
-    return ('Logout usuario');
-});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

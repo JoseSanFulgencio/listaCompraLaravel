@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Producto;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run(){
         self::seedProductos();
         $this->command->info('Tabla productos inicializada con datos!');
+        self::seedUsers();
+        $this->command->info('Tabla usuarios inicializada con datos!');
     }
 
     private static function seedProductos() {
@@ -29,6 +32,19 @@ class DatabaseSeeder extends Seeder
             $p->save();
 
         }
+    }
+
+    private static function seedUsers() {
+
+        User::truncate();
+
+        $user1 = new User();
+        $user1->name = 'usuario1';
+        $user1->email = 'emailUser1@alu.murciaeduca.es';
+        $user1->nombre = 'nombreUser1';
+        $user1->apellidos = 'apellidosUser1';
+        $user1->save();
+
     }
 
     private static $arrayProductos = array(
